@@ -11,13 +11,17 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Inter:wght@300;400;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { gothic: ['UnifrakturMaguntia', 'cursive'], sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { 
+                        gothic: ['Cinzel Decorative', 'cursive'], 
+                        impact: ['Bebas Neue', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'] 
+                    },
                     colors: { trustgold: '#D4AF37', trustdark: '#0a0a0a' }
                 }
             }
@@ -34,13 +38,12 @@
         .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.5); transition: width 0.2s, height 0.2s; }
         .noise-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 9998; opacity: 0.04; background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E'); }
         
-        /* Masonry Grid CSS (No heavy plugins needed) */
+        /* Masonry Grid */
         .masonry-grid { column-count: 2; column-gap: 1rem; }
         @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
         @media (min-width: 1024px) { .masonry-grid { column-count: 4; } }
         .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
 
-        /* Custom Audio Button Glow */
         .audio-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
         .audio-glow.playing { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); border-color: #D4AF37; }
     </style>
@@ -57,7 +60,7 @@
 
     <button id="audio-toggle" class="fixed bottom-6 right-6 z-50 bg-black/80 border border-white/20 text-trustgold px-4 py-3 rounded-full audio-glow backdrop-blur-md transition-all duration-300 flex items-center gap-3 hover:scale-105 cursor-pointer" onclick="toggleAudio()">
         <svg id="audio-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v18l-7-5H2v-6h3l7-5z"/></svg>
-        <span id="audio-text" class="text-[10px] font-bold tracking-[0.2em] uppercase">Init Audio</span>
+        <span id="audio-text" class="text-[10px] font-impact tracking-[0.2em] uppercase">Init Audio</span>
     </button>
 
     <div id="lightbox" class="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-xl opacity-0 invisible flex items-center justify-center transition-all duration-300 cursor-pointer" onclick="closeLightbox()">
@@ -68,53 +71,51 @@
     <nav class="fixed w-full z-50 top-0 transition-all duration-500 backdrop-blur-xl bg-black/60 border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex w-full md:w-auto justify-between items-center">
-                <a href="index.html" class="text-2xl md:text-3xl font-gothic text-white tracking-widest hover:text-trustgold transition-colors">$TRUST</a>
+                <a href="index.html" class="text-2xl md:text-3xl font-gothic text-white tracking-widest hover:text-trustgold transition-colors lowercase">$trust</a>
                 <a href="https://t.me/trust_the_coin" target="_blank" class="md:hidden text-trustgold animate-pulse">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.35-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.89.03-.25.38-.51 1.05-.78 4.12-1.79 6.87-2.97 8.24-3.55 3.93-1.65 4.74-1.94 5.27-1.95.12 0 .38.03.55.17.14.12.18.28.2.45.02.07.02.15.01.22z"/></svg>
                 </a>
             </div>
             
             <div class="flex space-x-6 md:space-x-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
-                <a href="index.html" class="hover:text-trustgold transition-colors">Gateway</a>
-                <a href="manifesto.html" class="hover:text-trustgold transition-colors">Manifesto</a>
-                <a href="portal.html" class="hover:text-trustgold transition-colors">Tokenomics</a>
+                <a href="index.html" class="hover:text-trustgold transition-colors font-impact">Gateway</a>
+                <a href="manifesto.html" class="hover:text-trustgold transition-colors font-impact">Manifesto</a>
+                <a href="portal.html" class="hover:text-trustgold transition-colors font-impact">Tokenomics</a>
             </div>
 
-            <a href="#" target="_blank" class="hidden md:block px-6 py-2.5 bg-white/10 hover:bg-trustgold text-white hover:text-black font-bold uppercase tracking-widest text-xs rounded-sm border border-white/10 hover:border-trustgold transition-all duration-300 backdrop-blur-sm">
+            <a href="#" target="_blank" class="hidden md:block px-6 py-2.5 bg-white/10 hover:bg-trustgold text-white hover:text-black font-impact uppercase tracking-widest text-xs rounded-sm border border-white/10 hover:border-trustgold transition-all duration-300 backdrop-blur-sm">
                 Enter Portal
             </a>
         </div>
     </nav>
 
     <section class="pt-40 pb-20 px-6 max-w-4xl mx-auto text-center relative z-10">
-        <div class="text-6xl md:text-9xl mb-6 animate-pulse opacity-80 mix-blend-screen drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] mx-auto w-fit">
-            <img src="logo.png" alt="Trust Logo" class="h-24 md:h-32 object-contain">
+        <div class="mb-10 opacity-80 mix-blend-screen drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] mx-auto w-fit">
+            <img src="logo.png" alt="Trust Logo" class="h-24 md:h-32 object-contain grayscale hover:grayscale-0 transition-all duration-700">
         </div>
-        <h1 class="gsap-reveal text-5xl md:text-7xl font-gothic text-white mb-8 drop-shadow-lg">The Sacred Texts.</h1>
-        <p class="gsap-reveal text-lg md:text-xl text-gray-400 leading-relaxed font-light mb-6">
+        <h1 class="gsap-reveal text-5xl md:text-8xl font-impact text-white mb-8 drop-shadow-lg uppercase tracking-tight">The Sacred Texts</h1>
+        <p class="gsap-reveal text-lg md:text-xl text-gray-400 leading-relaxed font-light mb-6 font-sans">
             The fiat system is a cage designed to keep you poor. We rejected the matrix. We stopped looking for utility and started looking for conviction. 
         </p>
-        <p class="gsap-reveal text-lg md:text-xl text-trustgold leading-relaxed font-medium italic border-y border-trustgold/20 py-6 my-8 bg-gradient-to-r from-transparent via-trustgold/5 to-transparent">
+        <p class="gsap-reveal text-lg md:text-xl text-trustgold leading-relaxed font-gothic italic border-y border-trustgold/20 py-6 my-8 bg-gradient-to-r from-transparent via-trustgold/5 to-transparent">
             "Diamond hands are not born; they are forged in the red candles. Study the archives. Trust the process."
         </p>
     </section>
 
     <section class="pb-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="masonry-grid" id="gallery">
-            </div>
+        <div class="masonry-grid" id="gallery"></div>
     </section>
 
     <footer class="bg-black pt-20 pb-10 border-t border-white/5 text-center relative z-10">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-5xl font-gothic text-white mb-8">$TRUST</div>
-            <p class="text-gray-700 text-[10px] uppercase tracking-widest max-w-2xl mx-auto leading-loose">
-                $TRUST is a memecoin with no intrinsic value. Trust the process. 
+            <div class="text-5xl font-gothic text-white mb-8 lowercase">$trust</div>
+            <p class="text-gray-700 text-[10px] uppercase tracking-widest max-w-2xl mx-auto leading-loose font-sans">
+                $TRUST is a memecoin with no intrinsic value. Trust the process.
             </p>
         </div>
     </footer>
 
     <script>
-        // Custom Cursor Logic
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         window.addEventListener('mousemove', (e) => {
@@ -123,7 +124,6 @@
             cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
         });
 
-        // Populate 17 Memes dynamically for clean code
         const gallery = document.getElementById('gallery');
         for (let i = 1; i <= 17; i++) {
             const item = document.createElement('div');
@@ -135,7 +135,6 @@
             gallery.appendChild(item);
         }
 
-        // Lightbox Logic
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         
@@ -150,7 +149,6 @@
             setTimeout(() => lightbox.classList.add('invisible', 'opacity-0'), 150);
         }
 
-        // Audio Toggle Logic
         const audio = document.getElementById('cult-audio');
         const audioBtn = document.getElementById('audio-toggle');
         const audioText = document.getElementById('audio-text');
@@ -169,7 +167,6 @@
             isPlaying = !isPlaying;
         }
 
-        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
         
         gsap.fromTo(".gsap-reveal", 
@@ -177,7 +174,6 @@
             { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.2 }
         );
 
-        // Stagger the gallery loading as user scrolls
         gsap.fromTo(".gsap-gallery-item", 
             { y: 50, opacity: 0 },
             { 
