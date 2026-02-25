@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#050505]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$TRUST | The Manifesto 🙏</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { gothic: ['UnifrakturMaguntia', 'cursive'], sans: ['Inter', 'sans-serif'] },
+                    colors: { trustgold: '#D4AF37', trustdark: '#0a0a0a' }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { margin: 0; overflow-x: hidden; cursor: none; }
+        ::selection { background: #D4AF37; color: #000; }
+        
+        /* Cursor & Overlay */
+        .cursor-dot, .cursor-outline { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
+        .cursor-dot { width: 8px; height: 8px; background-color: #D4AF37; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.5); transition: width 0.2s, height 0.2s; }
+        .noise-overlay { position: fixed; inset: 0; pointer-events: none; z-index: 9998; opacity: 0.04; background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E'); }
+        
+        /* Masonry Grid CSS (No heavy plugins needed) */
+        .masonry-grid { column-count: 2; column-gap: 1rem; }
+        @media (min-width: 768px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 4; } }
+        .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+
+        /* Custom Audio Button Glow */
+        .audio-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        .audio-glow.playing { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); border-color: #D4AF37; }
+    </style>
+</head>
+<body class="text-gray-200 antialiased selection:bg-trustgold selection:text-black">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+    <div class="noise-overlay"></div>
+
+    <audio id="cult-audio" loop>
+        <source src="ambient-dark-synth.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="audio-toggle" class="fixed bottom-6 right-6 z-50 bg-black/80 border border-white/20 text-trustgold px-4 py-3 rounded-full audio-glow backdrop-blur-md transition-all duration-300 flex items-center gap-3 hover:scale-105 cursor-pointer" onclick="toggleAudio()">
+        <svg id="audio-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v18l-7-5H2v-6h3l7-5z"/></svg>
+        <span id="audio-text" class="text-[10px] font-bold tracking-[0.2em] uppercase">Init Audio</span>
+    </button>
+
+    <div id="lightbox" class="fixed inset-0 z-[10000] bg-black/95 backdrop-blur-xl opacity-0 invisible flex items-center justify-center transition-all duration-300 cursor-pointer" onclick="closeLightbox()">
+        <button class="absolute top-8 right-8 text-white/50 hover:text-trustgold text-4xl font-light transition-colors">&times;</button>
+        <img id="lightbox-img" src="" alt="Expanded Meme" class="max-w-[90vw] max-h-[85vh] object-contain shadow-[0_0_50px_rgba(212,175,55,0.15)] scale-95 transition-transform duration-300">
+    </div>
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-500 backdrop-blur-xl bg-black/60 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-gothic text-white tracking-widest hover:text-trustgold transition-colors">$TRUST</a>
+            <div class="space-x-8 text-xs font-bold tracking-[0.2em] hidden md:block uppercase">
+                <a href="index.html" class="text-gray-400 hover:text-white transition-colors">The Gateway</a>
+                <a href="manifesto.html" class="text-trustgold transition-colors">Manifesto</a>
+                <a href="portal.html" class="text-gray-400 hover:text-white transition-colors">Tokenomics</a>
+            </div>
+            <a href="https://t.me/trust_the_coin" target="_blank" class="px-6 py-2.5 bg-white/10 hover:bg-trustgold text-white hover:text-black font-bold uppercase tracking-widest text-xs rounded-sm border border-white/10 hover:border-trustgold transition-all duration-300 backdrop-blur-sm">
+                Enter Portal
+            </a>
+        </div>
+    </nav>
+
+    <section class="pt-40 pb-20 px-6 max-w-4xl mx-auto text-center relative z-10">
+        <div class="text-6xl md:text-9xl mb-6 animate-pulse opacity-80 mix-blend-screen drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] mx-auto w-fit">
+            <img src="logo.png" alt="Trust Logo" class="h-24 md:h-32 object-contain">
+        </div>
+        <h1 class="gsap-reveal text-5xl md:text-7xl font-gothic text-white mb-8 drop-shadow-lg">The Sacred Texts.</h1>
+        <p class="gsap-reveal text-lg md:text-xl text-gray-400 leading-relaxed font-light mb-6">
+            The fiat system is a cage designed to keep you poor. We rejected the matrix. We stopped looking for utility and started looking for conviction. 
+        </p>
+        <p class="gsap-reveal text-lg md:text-xl text-trustgold leading-relaxed font-medium italic border-y border-trustgold/20 py-6 my-8 bg-gradient-to-r from-transparent via-trustgold/5 to-transparent">
+            "Diamond hands are not born; they are forged in the red candles. Study the archives. Trust the process."
+        </p>
+    </section>
+
+    <section class="pb-32 px-4 md:px-8 max-w-7xl mx-auto relative z-10">
+        <div class="masonry-grid" id="gallery">
+            </div>
+    </section>
+
+    <footer class="bg-black pt-20 pb-10 border-t border-white/5 text-center relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-5xl font-gothic text-white mb-8">$TRUST</div>
+            <p class="text-gray-700 text-[10px] uppercase tracking-widest max-w-2xl mx-auto leading-loose">
+                $TRUST is a memecoin with no intrinsic value. Trust the process. 🙏
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX; const posY = e.clientY;
+            cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
+            cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+        });
+
+        // Populate 17 Memes dynamically for clean code
+        const gallery = document.getElementById('gallery');
+        for (let i = 1; i <= 17; i++) {
+            const item = document.createElement('div');
+            item.className = 'masonry-item relative group cursor-pointer overflow-hidden rounded-md border border-white/5 bg-black/50 gsap-gallery-item';
+            item.innerHTML = `
+                <div class="absolute inset-0 bg-trustgold/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 mix-blend-overlay"></div>
+                <img src="meme${i}.jpg" alt="Trust Protocol Archive ${i}" class="w-full h-auto object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" onclick="openLightbox(this.src)">
+            `;
+            gallery.appendChild(item);
+        }
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.remove('invisible', 'opacity-0');
+            setTimeout(() => lightboxImg.classList.replace('scale-95', 'scale-100'), 50);
+        }
+        
+        function closeLightbox() {
+            lightboxImg.classList.replace('scale-100', 'scale-95');
+            setTimeout(() => lightbox.classList.add('invisible', 'opacity-0'), 150);
+        }
+
+        // Audio Toggle Logic
+        const audio = document.getElementById('cult-audio');
+        const audioBtn = document.getElementById('audio-toggle');
+        const audioText = document.getElementById('audio-text');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                audioBtn.classList.remove('playing');
+                audioText.innerText = 'Init Audio';
+            } else {
+                audio.play();
+                audioBtn.classList.add('playing');
+                audioText.innerText = 'Playing...';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        gsap.fromTo(".gsap-reveal", 
+            { y: 30, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.2 }
+        );
+
+        // Stagger the gallery loading as user scrolls
+        gsap.fromTo(".gsap-gallery-item", 
+            { y: 50, opacity: 0 },
+            { 
+                scrollTrigger: { trigger: "#gallery", start: "top 85%" },
+                y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.2)" 
+            }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#050505]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$TRUST | The Protocol 🙏</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { gothic: ['UnifrakturMaguntia', 'cursive'], sans: ['Inter', 'sans-serif'] },
+                    colors: { trustgold: '#D4AF37', trustdark: '#0a0a0a' }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Premium Core Styles */
+        body { margin: 0; overflow-x: hidden; cursor: none; } /* Hides default cursor */
+        ::selection { background: #D4AF37; color: #000; }
+        
+        /* Custom Cinematic Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #D4AF37; }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.5); transition: width 0.2s, height 0.2s; }
+        
+        /* Film Grain Overlay */
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9998; opacity: 0.04;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; justify-content: center; items-center; flex-direction: column;
+        }
+
+        /* Background Luxury Crossfade */
+        .bg-luxury {
+            background-image: linear-gradient(to bottom, rgba(5,5,5,0.7), #050505), url('https://images.unsplash.com/photo-1623345805780-8f01f714e65f?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+
+        /* Marquee Animations */
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scroll-reverse { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+    </style>
+</head>
+<body class="text-gray-200 antialiased selection:bg-trustgold selection:text-black">
+
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+    <div class="noise-overlay"></div>
+
+    <div id="preloader" class="flex items-center justify-center">
+        <img src="logo.png" alt="Loading" class="w-24 h-24 animate-pulse opacity-50 grayscale">
+        <div class="mt-4 font-gothic text-trustgold text-xl tracking-widest animate-bounce">Initializing Cult...</div>
+    </div>
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-500 backdrop-blur-xl bg-black/40 border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-3xl font-gothic text-white tracking-widest hover:text-trustgold transition-colors">$TRUST</a>
+            <div class="space-x-8 text-xs font-bold tracking-[0.2em] hidden md:block uppercase">
+                <a href="index.html" class="text-trustgold transition-colors">The Gateway</a>
+                <a href="manifesto.html" class="text-gray-400 hover:text-white transition-colors">Manifesto</a>
+                <a href="portal.html" class="text-gray-400 hover:text-white transition-colors">Tokenomics</a>
+            </div>
+            <a href="https://t.me/trust_the_coin" target="_blank" class="px-6 py-2.5 bg-white/10 hover:bg-trustgold text-white hover:text-black font-bold uppercase tracking-widest text-xs rounded-sm border border-white/10 hover:border-trustgold transition-all duration-300 backdrop-blur-sm">
+                Enter Portal
+            </a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex flex-col items-center justify-center bg-luxury text-center px-4 overflow-hidden">
+        <div class="z-10 max-w-5xl mx-auto flex flex-col items-center mt-16">
+            <div class="gsap-hero mb-8 flex items-center gap-3 bg-black/60 border border-white/10 backdrop-blur-md px-4 py-2 rounded-sm cursor-pointer hover:border-trustgold/50 transition-colors group" onclick="copyCA()">
+                <span class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Contract</span>
+                <span class="text-sm font-mono text-trustgold" id="ca-text">Coming_Soon_Trust_The_Process</span>
+                <svg class="w-4 h-4 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            </div>
+
+            <img src="logo.png" alt="$TRUST Logo" class="gsap-hero h-28 md:h-40 mx-auto mb-6 drop-shadow-[0_0_25px_rgba(212,175,55,0.2)] mix-blend-screen">
+            
+            <h1 class="gsap-hero text-[13vw] sm:text-6xl md:text-8xl lg:text-[10rem] font-gothic text-white mb-6 tracking-wide drop-shadow-[0_0_30px_rgba(0,0,0,0.8)] leading-none whitespace-nowrap">
+                trust the process.
+            </h1>
+            
+            <p class="gsap-hero text-lg md:text-2xl font-light text-gray-300 mb-12 max-w-2xl mx-auto drop-shadow-lg">
+                The ultimate wealth accumulation protocol on Solana. We do not panic. We do not fold.
+            </p>
+            
+            <div class="gsap-hero flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
+                <a href="https://t.me/trust_the_coin" target="_blank" class="px-10 py-4 bg-trustgold text-black font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+                    Join The Cult
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <section class="py-12 bg-[#020202] overflow-hidden border-y border-white/5 relative">
+        <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#020202] to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#020202] to-transparent z-10 pointer-events-none"></div>
+
+        <div class="flex w-max animate-[scroll_40s_linear_infinite] mb-6 gap-6 hover:[animation-play-state:paused]">
+            <img src="meme1.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme2.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme3.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme4.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme5.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme6.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme7.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme8.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme9.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme1.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme2.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme3.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme4.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme5.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme6.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme7.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme8.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme9.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+        </div>
+
+        <div class="flex w-max animate-[scroll-reverse_35s_linear_infinite] gap-6 hover:[animation-play-state:paused]">
+            <img src="meme10.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme11.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme12.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme13.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme14.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme15.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme16.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme17.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme10.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme11.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme12.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme13.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme14.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme15.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme16.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+            <img src="meme17.jpg" class="h-48 md:h-72 w-auto object-cover opacity-50 hover:opacity-100 transition-all duration-700 grayscale hover:grayscale-0 border border-white/5">
+        </div>
+    </section>
+
+    <section id="about" class="py-40 bg-[#050505] relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-trustgold/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center relative z-10">
+            <div class="space-y-10 gsap-fade-up">
+                <h2 class="text-6xl md:text-7xl font-gothic text-white leading-tight">
+                    Embrace <br>
+                    <span class="text-trustgold drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">The Journey.</span>
+                </h2>
+                
+                <div class="space-y-6 text-gray-400 text-xl font-light leading-relaxed">
+                    <p>
+                        <span class="text-white font-medium">$TRUST</span> isn't just a token; it's an undeniable law. We are a collective of believers and diamond handers who know that true wealth demands absolute conviction. 
+                    </p>
+                    <p class="border-l-4 border-trustgold/50 pl-6 py-2 italic text-gray-300 bg-gradient-to-r from-trustgold/5 to-transparent">
+                        While others panic, we pray. While others fold, we hold. Welcome to the 1%. Welcome to the cult.
+                    </p>
+                </div>
+                
+                <a href="manifesto.html" class="inline-flex items-center gap-3 text-trustgold uppercase tracking-[0.2em] font-bold text-sm hover:text-white transition-colors group">
+                    Read The Manifesto 
+                    <span class="transform group-hover:translate-x-2 transition-transform">→</span>
+                </a>
+            </div>
+
+            <div class="relative flex justify-center items-center gsap-scale-up mt-10 md:mt-0">
+                <div class="absolute w-[120%] h-[120%] border border-white/5 rounded-full animate-[spin_25s_linear_infinite] pointer-events-none"></div>
+                <div class="absolute w-[105%] h-[105%] border border-trustgold/20 rounded-full animate-[spin_15s_linear_infinite_reverse] pointer-events-none shadow-[0_0_30px_rgba(212,175,55,0.1)]"></div>
+                
+                <div class="relative aspect-square w-full max-w-lg rounded-full bg-gradient-to-b from-[#1a1a1a] to-[#000] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.9)] flex items-center justify-center overflow-hidden group">
+                    <div class="absolute inset-0 bg-black opacity-60 group-hover:opacity-30 transition-opacity duration-1000 z-0"></div>
+                    <img src="meme8.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40 group-hover:scale-110 transition-transform duration-[2000ms]">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent z-0"></div>
+                    <img src="logo.png" alt="$TRUST Logo" class="w-48 h-48 md:w-64 md:h-64 z-10 object-contain drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-transform duration-700 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black pt-20 pb-10 border-t border-white/5 text-center relative z-10">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-5xl font-gothic text-white mb-8">$TRUST</div>
+            <div class="flex justify-center gap-8 mb-12">
+                <a href="https://t.me/trust_the_coin" class="text-gray-500 hover:text-trustgold transition-colors uppercase text-xs font-bold tracking-[0.2em]">Telegram</a>
+                <a href="https://x.com/trust_solana" class="text-gray-500 hover:text-trustgold transition-colors uppercase text-xs font-bold tracking-[0.2em]">Twitter</a>
+                <a href="portal.html" class="text-gray-500 hover:text-trustgold transition-colors uppercase text-xs font-bold tracking-[0.2em]">DexScreener</a>
+            </div>
+            <p class="text-gray-700 text-[10px] uppercase tracking-widest max-w-2xl mx-auto leading-loose">
+                $TRUST is a memecoin with no intrinsic value or expectation of financial return. There is no formal team or roadmap. The coin is completely useless and for entertainment purposes only. Trust the process. 🙏
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Subtle delay on outline for smooth trailing effect
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Interactive hover states for cursor
+        document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.borderColor = '#fff';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+            });
+        });
+
+        // 2. Copy CA Function
+        function copyCA() {
+            const caText = document.getElementById('ca-text').innerText;
+            navigator.clipboard.writeText(caText).then(() => {
+                const terminal = document.getElementById('ca-text');
+                const originalText = terminal.innerText;
+                terminal.innerText = 'COPIED_TO_CLIPBOARD';
+                terminal.classList.add('text-white');
+                setTimeout(() => {
+                    terminal.innerText = originalText;
+                    terminal.classList.remove('text-white');
+                }, 2000);
+            });
+        }
+
+        // 3. GSAP Premium Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener("load", () => {
+            // Remove Preloader smoothly
+            gsap.to("#preloader", {
+                opacity: 0, duration: 1, delay: 0.5, onComplete: () => {
+                    document.getElementById("preloader").style.display = "none";
+                    
+                    // Staggered Hero Reveal
+                    gsap.fromTo(".gsap-hero", 
+                        { y: 50, opacity: 0 }, 
+                        { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" }
+                    );
+                }
+            });
+        });
+
+        // Scroll Animations for The Cult Section
+        gsap.fromTo(".gsap-fade-up", 
+            { y: 100, opacity: 0 },
+            { 
+                scrollTrigger: { trigger: "#about", start: "top 70%" },
+                y: 0, opacity: 1, duration: 1.2, ease: "power3.out" 
+            }
+        );
+
+        gsap.fromTo(".gsap-scale-up", 
+            { scale: 0.8, opacity: 0 },
+            { 
+                scrollTrigger: { trigger: "#about", start: "top 70%" },
+                scale: 1, opacity: 1, duration: 1.5, ease: "expo.out" 
+            }
+        );
+    </script>
+</body>
+</html>
