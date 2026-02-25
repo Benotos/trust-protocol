@@ -45,6 +45,8 @@
         .typewriter-cursor { display: inline-block; width: 8px; height: 1em; background-color: #D4AF37; animation: blink 1s step-end infinite; vertical-align: bottom; ml-1; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
+
+    <script src="https://plugin.jup.ag/plugin-v1.js" data-preload defer></script>
 </head>
 <body class="text-gray-200 antialiased selection:bg-trustgold selection:text-black">
 
@@ -132,7 +134,7 @@
             <div class="text-[10px] font-mono text-trustgold tracking-[0.2em] uppercase mb-4 animate-pulse">
                 > SECURE SWAP PROTOCOL INITIATED
             </div>
-            <div id="jupiter-terminal" class="w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.15)] border border-white/10 min-h-[400px] bg-[#131313]"></div>
+            <div id="jupiter-plugin" class="w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.15)] border border-white/10 min-h-[400px] bg-[#131313]"></div>
         </div>
 
     </section>
@@ -211,9 +213,7 @@
             });
         }
 
-
-
-        // GSAP Animations
+        // GSAP Animations and Jupiter Init
         window.addEventListener("load", () => {
             gsap.fromTo(".gsap-init", 
                 { y: 30, opacity: 0 }, 
@@ -227,23 +227,15 @@
 
             // Start typewriter after brief delay
             setTimeout(typeWriter, 800);
-        });
 
-        // Initialize Live Jupiter Terminal
-        window.addEventListener("load", () => {
-            window.Jupiter.init({
-                displayMode: "integrated",
-                integratedTargetId: "jupiter-terminal",
-                endpoint: "https://api.mainnet-beta.solana.com", // Solana Mainnet RPC
-                strictTokenList: false,
-                formProps: {
-                    initialInputMint: "So11111111111111111111111111111111111111112", // Default to SOL
-                    // IMPORTANT: Change this placeholder to the actual $TRUST CA once the coin is live!
-                    initialOutputMint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", // Currently USDC as placeholder
-                },
-            });
+            // Initialize Live Jupiter Terminal (V1 Plugin)
+            if (window.Jupiter) {
+                window.Jupiter.init({
+                    displayMode: "integrated",
+                    integratedTargetId: "jupiter-plugin",
+                });
+            }
         });
     </script>
-    <script src="https://terminal.jup.ag/main-v2.js"></script>
 </body>
 </html>
