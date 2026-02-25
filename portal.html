@@ -10,14 +10,15 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;800&family=JetBrains+Mono:wght@400;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Inter:wght@300;400;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { 
-                        gothic: ['UnifrakturMaguntia', 'cursive'], 
+                        gothic: ['Cinzel Decorative', 'cursive'], 
+                        impact: ['Bebas Neue', 'sans-serif'],
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'] 
                     },
@@ -59,19 +60,19 @@
     <nav class="fixed w-full z-50 top-0 transition-all duration-500 backdrop-blur-xl bg-black/60 border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex w-full md:w-auto justify-between items-center">
-                <a href="index.html" class="text-2xl md:text-3xl font-gothic text-white tracking-widest hover:text-trustgold transition-colors">$TRUST</a>
-                <a href="#" target="_blank" class="md:hidden text-trustgold animate-pulse">
+                <a href="index.html" class="text-2xl md:text-3xl font-gothic text-white tracking-widest hover:text-trustgold transition-colors lowercase">$trust</a>
+                <a href="https://t.me/trust_the_coin" target="_blank" class="md:hidden text-trustgold animate-pulse">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.35-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.89.03-.25.38-.51 1.05-.78 4.12-1.79 6.87-2.97 8.24-3.55 3.93-1.65 4.74-1.94 5.27-1.95.12 0 .38.03.55.17.14.12.18.28.2.45.02.07.02.15.01.22z"/></svg>
                 </a>
             </div>
             
-            <div class="flex space-x-6 md:space-x-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+            <div class="flex space-x-6 md:space-x-8 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase font-impact">
                 <a href="index.html" class="hover:text-trustgold transition-colors">Gateway</a>
                 <a href="manifesto.html" class="hover:text-trustgold transition-colors">Manifesto</a>
-                <a href="portal.html" class="hover:text-trustgold transition-colors">Tokenomics</a>
+                <a href="portal.html" class="text-trustgold transition-colors">Tokenomics</a>
             </div>
 
-            <a href="https://t.me/trust_the_coin" target="_blank" class="hidden md:block px-6 py-2.5 bg-white/10 hover:bg-trustgold text-white hover:text-black font-bold uppercase tracking-widest text-xs rounded-sm border border-white/10 hover:border-trustgold transition-all duration-300 backdrop-blur-sm">
+            <a href="https://t.me/trust_the_coin" target="_blank" class="hidden md:block px-6 py-2.5 bg-white/10 hover:bg-trustgold text-white hover:text-black font-impact uppercase tracking-widest text-xs rounded-sm border border-white/10 hover:border-trustgold transition-all duration-300 backdrop-blur-sm">
                 Enter Portal
             </a>
         </div>
@@ -80,8 +81,8 @@
     <section class="pt-40 pb-20 px-4 md:px-8 max-w-6xl mx-auto relative z-10 min-h-screen flex flex-col justify-center">
         
         <div class="text-center mb-12 gsap-init">
-            <h1 class="text-6xl md:text-8xl font-gothic text-white drop-shadow-[0_0_20px_rgba(212,175,55,0.2)]">The Portal.</h1>
-            <div class="font-mono text-sm tracking-[0.3em] uppercase mt-6 text-gray-500">
+            <h1 class="text-5xl md:text-8xl font-impact text-white drop-shadow-[0_0_20px_rgba(212,175,55,0.2)] uppercase tracking-tight">THE PORTAL</h1>
+            <div class="font-mono text-[10px] md:text-sm tracking-[0.3em] uppercase mt-6 text-gray-500">
                 Network_Status: <span class="text-trustgold animate-pulse">Solana_Mainnet</span>
             </div>
         </div>
@@ -93,52 +94,52 @@
                     <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                     <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
-                <div class="text-[10px] font-mono text-gray-500 tracking-widest uppercase">sys_admin@trust_protocol</div>
+                <div class="text-[8px] md:text-[10px] font-mono text-gray-500 tracking-widest uppercase">sys_admin@trust_protocol</div>
             </div>
             
-            <div class="p-6 md:p-10 font-mono text-sm md:text-base text-gray-300 leading-relaxed">
+            <div class="p-6 md:p-10 font-mono text-xs md:text-base text-gray-300 leading-relaxed">
                 <div id="typewriter-text" class="mb-8 min-h-[4rem]"></div>
                 
                 <div class="mt-8 border border-trustgold/20 bg-black/40 p-4 md:p-6 rounded flex flex-col md:flex-row items-center justify-between gap-4 group hover:border-trustgold/50 transition-colors cursor-pointer" onclick="copyCA()">
                     <div>
-                        <div class="text-[10px] text-trustgold tracking-[0.2em] uppercase mb-2">Verified Contract Address</div>
-                        <div class="text-white break-all text-sm md:text-lg font-bold tracking-wider" id="ca-text">Coming_Soon_Trust_The_Process</div>
+                        <div class="text-[8px] md:text-[10px] text-trustgold tracking-[0.2em] uppercase mb-2">Verified Contract Address</div>
+                        <div class="text-white break-all text-xs md:text-lg font-bold tracking-wider" id="ca-text">Coming_Soon_Trust_The_Process</div>
                     </div>
                     <div class="shrink-0 p-3 bg-white/5 rounded-full group-hover:bg-trustgold group-hover:text-black transition-colors" id="copy-icon-container">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto w-full mb-16">
-            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto w-full mb-16">
+            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-4 md:p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
                 <div class="absolute inset-0 bg-gradient-to-b from-trustgold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Total Supply</div>
-                <div class="text-3xl font-bold text-white tracking-tight relative z-10">1,000,000,000</div>
+                <div class="text-[8px] md:text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Total Supply</div>
+                <div class="text-xl md:text-3xl font-bold text-white tracking-tight relative z-10 font-impact uppercase">1B</div>
             </div>
             
-            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
+            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-4 md:p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
                 <div class="absolute inset-0 bg-gradient-to-b from-trustgold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Buy / Sell Tax</div>
-                <div class="text-3xl font-bold text-trustgold tracking-tight relative z-10">0% / 0%</div>
+                <div class="text-[8px] md:text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Buy / Sell Tax</div>
+                <div class="text-xl md:text-3xl font-bold text-trustgold tracking-tight relative z-10 font-impact uppercase">0/0</div>
             </div>
 
-            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
+            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-4 md:p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
                 <div class="absolute inset-0 bg-gradient-to-b from-trustgold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Liquidity</div>
-                <div class="text-3xl font-bold text-white tracking-tight relative z-10 uppercase">Burned</div>
+                <div class="text-[8px] md:text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Liquidity</div>
+                <div class="text-xl md:text-3xl font-bold text-white tracking-tight relative z-10 font-impact uppercase">Burned</div>
             </div>
 
-            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
+            <div class="stat-card bg-[#0a0a0a] border border-white/5 rounded-lg p-4 md:p-6 transition-all duration-300 gsap-card relative overflow-hidden group">
                 <div class="absolute inset-0 bg-gradient-to-b from-trustgold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Mint & Freeze</div>
-                <div class="text-3xl font-bold text-white tracking-tight relative z-10 uppercase">Revoked</div>
+                <div class="text-[8px] md:text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-2 relative z-10">Mint & Freeze</div>
+                <div class="text-xl md:text-3xl font-bold text-white tracking-tight relative z-10 font-impact uppercase">Revoked</div>
             </div>
         </div>
 
         <div class="gsap-init w-full max-w-md mx-auto mt-8 flex flex-col items-center">
-            <div class="text-[10px] font-mono text-trustgold tracking-[0.2em] uppercase mb-4 animate-pulse">
+            <div class="text-[10px] font-impact text-trustgold tracking-[0.2em] uppercase mb-4 animate-pulse">
                 > SECURE SWAP PROTOCOL INITIATED
             </div>
             <div id="jupiter-plugin" class="w-full rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.15)] border border-white/10 min-h-[400px] bg-[#131313]"></div>
@@ -148,8 +149,8 @@
 
     <footer class="bg-black py-10 border-t border-white/5 text-center relative z-10 mt-auto">
         <div class="max-w-4xl mx-auto px-6">
-            <div class="text-4xl font-gothic text-white mb-6">$TRUST</div>
-            <p class="text-gray-700 text-[10px] uppercase tracking-widest max-w-2xl mx-auto leading-loose">
+            <div class="text-4xl font-gothic text-white mb-6 lowercase">$trust</div>
+            <p class="text-gray-700 text-[10px] uppercase tracking-widest max-w-2xl mx-auto leading-loose font-sans">
                 $TRUST is a memecoin with no intrinsic value. Trust the process. 
             </p>
         </div>
